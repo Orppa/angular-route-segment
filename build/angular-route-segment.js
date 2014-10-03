@@ -359,15 +359,7 @@ mod.provider( '$routeSegment',
                 return resolve(index, segment.name, segment.params);
         }
 
-        var highestIndex = 0;
         function resolve(index, name, params) {
-            if(highestIndex > index) {
-                return;
-            }
-
-            if(highestIndex < index) {
-                highestIndex = index;
-            }
 
             var locals = angular.extend({}, params.resolve);
             
@@ -409,8 +401,8 @@ mod.provider( '$routeSegment',
                                 reload: function() {
                                     var originalSegment = getSegmentInChain(index, $routeSegment.name.split("."));
                                     updateSegment(index, originalSegment).then(function(result) {
-                                        if(result.success != undefined)
-                                            broadcast(index);
+                                        /*if(result.success != undefined)
+                                            broadcast(index);*/
                                     })
                                 }
                             };
