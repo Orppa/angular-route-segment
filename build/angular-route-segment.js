@@ -358,9 +358,17 @@ mod.provider( '$routeSegment',
             else
                 return resolve(index, segment.name, segment.params);
         }
-        
+
+        var highestIndex = 0;
         function resolve(index, name, params) {
-            
+            if(highestIndex > index) {
+                return;
+            }
+
+            if(highestIndex < index) {
+                highestIndex = index;
+            }
+
             var locals = angular.extend({}, params.resolve);
             
             angular.forEach(locals, function(value, key) {
